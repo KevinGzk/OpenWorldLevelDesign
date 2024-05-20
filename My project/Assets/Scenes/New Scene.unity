@@ -2552,9 +2552,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d961b51b47595d4c92b03741eaf8a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 879436657}
   canInteract: 0
   haveInteracted: 0
+  rotationCenter: {fileID: 0}
+  rotationAngle: 90
 --- !u!1 &5298768547710402764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,9 +2586,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d961b51b47595d4c92b03741eaf8a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 879436657}
   canInteract: 0
   haveInteracted: 0
+  rotationCenter: {fileID: 0}
+  rotationAngle: 90
 --- !u!65 &5298768547710402766
 BoxCollider:
   m_ObjectHideFlags: 0
