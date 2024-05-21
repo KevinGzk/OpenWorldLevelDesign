@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -133,6 +133,8 @@ namespace StarterAssets
             }
         }
 
+        [SerializeField] private float isGlidable = 1.5f;
+
 
         private void Awake()
         {
@@ -146,7 +148,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -304,14 +306,14 @@ namespace StarterAssets
             }
 
             //climbing function
-            
 
-            if(!isClimbing)
+
+            if (!isClimbing)
             {
                 //not climbing any wall
                 float avoidFloorDistance = 0.1f;
                 float ladderGrabDistance = 0.4f;
-                if(Physics.Raycast(transform.position + Vector3.up * avoidFloorDistance, targetDirection, out RaycastHit raycastHit, ladderGrabDistance))
+                if (Physics.Raycast(transform.position + Vector3.up * avoidFloorDistance, targetDirection, out RaycastHit raycastHit, ladderGrabDistance))
                 {
                     if (raycastHit.transform.TryGetComponent(out Climbable climbable))
                     {
@@ -325,9 +327,9 @@ namespace StarterAssets
                 //climbing the wall
                 float avoidFloorDistance = 0.1f;
                 float ladderGrabDistance = 0.4f;
-                if(Physics.Raycast(transform.position + Vector3.up * avoidFloorDistance, lastGrabWallDirection, out RaycastHit raycastHit, ladderGrabDistance))
+                if (Physics.Raycast(transform.position + Vector3.up * avoidFloorDistance, lastGrabWallDirection, out RaycastHit raycastHit, ladderGrabDistance))
                 {
-                    if(!raycastHit.transform.TryGetComponent(out Climbable climbable))
+                    if (!raycastHit.transform.TryGetComponent(out Climbable climbable))
                     {
                         DropWall();
                         _verticalVelocity = 4f;
@@ -347,40 +349,40 @@ namespace StarterAssets
                     }
                 }
 
-                if(Vector3.Dot(targetDirection, lastGrabWallDirection) < 0)
+                if (Vector3.Dot(targetDirection, lastGrabWallDirection) < 0)
                 {
                     //climbing down the wall
                     float wallDropDistance = 0.1f;
-                    if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit floorRaycastHit, wallDropDistance))
+                    if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit floorRaycastHit, wallDropDistance))
                     {
                         DropWall();
                         if (_hasAnimator)
                         {
-                         _animator.SetBool(_animIDClimb, false);
+                            _animator.SetBool(_animIDClimb, false);
                         }
                     }
                 }
             }
-            
 
-            if(isClimbing)
+
+            if (isClimbing)
             {
                 // Adjust character rotation to face the wall
                 Quaternion wallRotation = Quaternion.LookRotation(-_wallNormal);
                 transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, wallRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-                
+
                 targetDirection.y = targetDirection.z;
                 targetDirection.z = 0f;
                 targetDirection.x = 0f;
                 _verticalVelocity = 0f;
                 Grounded = true;
                 _speed = targetSpeed;
-                
+
 
 
                 // //don't rotate when climbing
                 // transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-                
+
                 // update animator if using character
                 if (_hasAnimator)
                 {
@@ -423,7 +425,7 @@ namespace StarterAssets
         //     {
         //         //rest gliding state when grounded
         //         _isGliding = false;
-                
+
         //         // reset the fall timeout timer
         //         _fallTimeoutDelta = FallTimeout;
 
@@ -476,8 +478,8 @@ namespace StarterAssets
         //         // Apply gliding gravity if gliding, else apply normal falling gravity
         //         float appliedGravity = _isGliding ? GlidingGravity : Gravity;
         //         _verticalVelocity += appliedGravity * Time.deltaTime;
-                
-                
+
+
         //         // // reset the jump timeout timer
         //         // _jumpTimeoutDelta = JumpTimeout;
 
@@ -510,61 +512,87 @@ namespace StarterAssets
         // }
 
         private void JumpAndGravity()
-    {
-        if (Grounded)
         {
-            _isGliding = false;
-            _hasJumped = false; // Reset when grounded
-
-            if (_hasAnimator)
+            if (Grounded)
             {
-                _animator.SetBool(_animIDJump, false);
-                _animator.SetBool(_animIDFreeFall, false);
-                _animator.SetBool("isGliding", false);
-            }
-
-            if (_verticalVelocity < 0.0f)
-            {
-                _verticalVelocity = -2f;
-            }
-
-            if (_input.jump && _jumpTimeoutDelta <= 0.0f)
-            {
-                _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-                _hasJumped = true; // Player has initiated a jump
+                _isGliding = false;
+                _hasJumped = false; // Reset when grounded
 
                 if (_hasAnimator)
                 {
-                    _animator.SetBool(_animIDJump, true);
+                    _animator.SetBool(_animIDJump, false);
+                    _animator.SetBool(_animIDFreeFall, false);
+                    _animator.SetBool("isGliding", false);
                 }
-            }
 
-            _jumpTimeoutDelta -= Time.deltaTime;
-        }
-        else
-        {
-            // Initiate gliding only if the player has jumped, is pressing jump again, and is currently falling
-            if(!_isGliding && _hasJumped && _input.jump && _verticalVelocity < 0)
-            {
-                _isGliding = true;
-                _input.jump = false;
-
-                if (_hasAnimator)
+                if (_verticalVelocity < 0.0f)
                 {
-                    _animator.SetBool("isGliding", true);
+                    _verticalVelocity = -2f;
+                }
+
+                if (_input.jump && !_hasJumped)
+                {
+
+                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                    _hasJumped = true; // Player has initiated a jump
+
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool(_animIDJump, true);
+                    }
+                    Debug.Log("Jump");
+                    _input.jump = false; // Prevent further jump checks while in the gliding state
+
                 }
             }
-
-            float appliedGravity = _isGliding ? GlidingGravity : Gravity;
-            _verticalVelocity += appliedGravity * Time.deltaTime;
-
-            if (_verticalVelocity < -_terminalVelocity) // Ensuring _verticalVelocity does not exceed terminal velocity
+            else
             {
-                _verticalVelocity = -_terminalVelocity;
+
+                if (_input.jump && !_isGliding && CheckIsGlidable())
+                {
+                    _isGliding = true;
+                    _verticalVelocity = 0f; // Reset vertical velocity when gliding
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool("isGliding", true);
+                    }
+                    _input.jump = false; // Prevent further jump checks while in the gliding state
+                }
+                else if (_input.jump && _isGliding)
+                {
+                    _isGliding = false;
+                    Debug.Log("Stop gliding");
+
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool("isGliding", false);
+                        _animator.SetBool(_animIDFreeFall, true);
+                    }
+                    _input.jump = false; // Prevent further jump checks while in the gliding state
+                }
+                else if (_input.jump)
+                {
+                    _input.jump = false;
+                }
+                _animator.SetBool(_animIDFreeFall, true);
+
+
+                float appliedGravity = _isGliding ? GlidingGravity : Gravity;
+                _verticalVelocity += appliedGravity * Time.deltaTime;
+
+                if (_verticalVelocity < -_terminalVelocity) // Ensuring _verticalVelocity does not exceed terminal velocity
+                {
+                    _verticalVelocity = -_terminalVelocity;
+                }
             }
         }
-    }
 
+        private bool CheckIsGlidable()
+        {
+            Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, isGlidable);
+            // Debug.Log(hit.collider);
+            return hit.collider == null;
+        }
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
@@ -604,6 +632,13 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        //Draw gizmos for glidable check
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(transform.position, Vector3.down * isGlidable); 
         }
     }
 }
