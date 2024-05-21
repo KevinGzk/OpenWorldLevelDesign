@@ -133,7 +133,8 @@ namespace StarterAssets
             }
         }
 
-        [SerializeField] private float isGlidable = 1.5f;
+        [SerializeField] private float glideCheck = 1.5f;
+        [SerializeField] private bool _isGlidable = true;
 
 
         private void Awake()
@@ -548,7 +549,7 @@ namespace StarterAssets
             else
             {
 
-                if (_input.jump && !_isGliding && CheckIsGlidable())
+                if (_input.jump && !_isGliding && CheckIsGlidable() && _isGlidable)
                 {
                     _isGliding = true;
                     _verticalVelocity = 0f; // Reset vertical velocity when gliding
@@ -587,9 +588,13 @@ namespace StarterAssets
             }
         }
 
+        public void SetGlidable(bool boolean){
+            _isGlidable = boolean;
+        }
+
         private bool CheckIsGlidable()
         {
-            Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, isGlidable);
+            Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, glideCheck);
             // Debug.Log(hit.collider);
             return hit.collider == null;
         }
@@ -638,7 +643,7 @@ namespace StarterAssets
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, Vector3.down * isGlidable); 
+            Gizmos.DrawRay(transform.position, Vector3.down * glideCheck); 
         }
     }
 }
