@@ -503,6 +503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6493147140736901396}
   - component: {fileID: 4102644558688674689}
+  - component: {fileID: 4672643290425320594}
   m_Layer: 0
   m_Name: pickups
   m_TagString: Chest
@@ -543,6 +544,27 @@ MonoBehaviour:
   haveInteracted: 0
   rotationCenter: {fileID: 0}
   rotationAngle: 90
+--- !u!65 &4672643290425320594
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793816215182564828}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.92609954, y: 1.7047532, z: 0.8228742}
+  m_Center: {x: 0.4837513, y: 0.21266794, z: 3.8619328}
 --- !u!1 &8079610897929714588
 GameObject:
   m_ObjectHideFlags: 0
