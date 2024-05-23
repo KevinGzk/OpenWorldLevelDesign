@@ -36,6 +36,7 @@ namespace StarterAssets
         [Space(10)]
         [Tooltip("The height the player can jump")]
         public float JumpHeight = 1.2f;
+        public float JumpPadHeight = 3.0f;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
@@ -586,6 +587,13 @@ namespace StarterAssets
                     _verticalVelocity = -_terminalVelocity;
                 }
             }
+        }
+
+        public void JumpPadJump()
+        {
+            _verticalVelocity = Mathf.Sqrt(JumpPadHeight * -2f * Gravity);
+            _hasJumped = true; // Player has initiated a jump
+
         }
 
         public void SetGlidable(bool boolean){
