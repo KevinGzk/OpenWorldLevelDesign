@@ -1587,6 +1587,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature
       objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: WindBoostSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: WindBoostHeight
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2001,17 +2011,17 @@ PrefabInstance:
     - target: {fileID: 3786431179538330608, guid: 190a1c40c3f07384c8cf3b2e7dc1c725,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.47
+      value: -1.92
       objectReference: {fileID: 0}
     - target: {fileID: 3786431179538330608, guid: 190a1c40c3f07384c8cf3b2e7dc1c725,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.57
       objectReference: {fileID: 0}
     - target: {fileID: 3786431179538330608, guid: 190a1c40c3f07384c8cf3b2e7dc1c725,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.76
+      value: -3.83
       objectReference: {fileID: 0}
     - target: {fileID: 3786431179538330608, guid: 190a1c40c3f07384c8cf3b2e7dc1c725,
         type: 3}
@@ -3113,6 +3123,74 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1001 &5528877558390212511
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6961672991280610295, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_Name
+      value: WindRing
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048756745444264267, guid: e5015b4630bd74c47aad28173685d1a8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e5015b4630bd74c47aad28173685d1a8, type: 3}
 --- !u!114 &5781538778821829355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3428,3 +3506,4 @@ SceneRoots:
   - {fileID: 2042391804}
   - {fileID: 542664255858333340}
   - {fileID: 855350213891090649}
+  - {fileID: 5528877558390212511}
