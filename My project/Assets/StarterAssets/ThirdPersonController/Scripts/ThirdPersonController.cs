@@ -42,7 +42,8 @@ namespace StarterAssets
         public float JumpPadHeight = 3.0f;
 
         public float WindBoostHeight = 0.5f;
-        public float WindBoostSpeed = 5.0f;
+        public float WindBoostDistance = 5.0f;
+        public float WindBoostSpeed = 1.0f;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
@@ -692,8 +693,8 @@ namespace StarterAssets
             this.transform.DOMove(
                     this.transform.position
                         + new Vector3(0, WindBoostHeight, 0)
-                        + this.transform.forward * WindBoostSpeed,
-                    1f
+                        + this.transform.forward * WindBoostDistance,
+                    WindBoostSpeed
                 )
                 .OnComplete(() =>
                 {
