@@ -488,7 +488,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -502,11 +502,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6493147140736901396}
-  - component: {fileID: 4102644558688674689}
   - component: {fileID: 4672643290425320594}
+  - component: {fileID: 5310501075413671515}
   m_Layer: 0
   m_Name: pickups
-  m_TagString: Chest
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -528,22 +528,6 @@ Transform:
   - {fileID: 791190919029421420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4102644558688674689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7793816215182564828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d961b51b47595d4c92b03741eaf8a8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canInteract: 0
-  haveInteracted: 0
-  rotationCenter: {fileID: 0}
-  rotationAngle: 90
 --- !u!65 &4672643290425320594
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -565,6 +549,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.92609954, y: 1.7047532, z: 0.8228742}
   m_Center: {x: 0.4837513, y: 0.21266794, z: 3.8619328}
+--- !u!114 &5310501075413671515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793816215182564828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43c1ee2873aec3499c68361553f9c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8079610897929714588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1049,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
