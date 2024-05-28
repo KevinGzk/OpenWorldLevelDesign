@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/openworld.unity
     guid: 53dcf1d094ae4eb478bb8d1cdcd3c12f
+  - enabled: 1
+    path: Assets/Scenes/glideLevel.unity
+    guid: af687260dd4440648a404de620dd4f18
   m_configObjects: {}
